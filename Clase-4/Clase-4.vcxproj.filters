@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Codigo Fuente">
+      <UniqueIdentifier>{e4050876-668a-4cec-b790-3a3c86d93990}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source code\main.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
