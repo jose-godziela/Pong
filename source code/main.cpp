@@ -6,7 +6,7 @@ const int PLAYER1 = 0;
 const int PLAYER2 = 1;
 const int FPS = 60;
 const int MOVEMENT = 22;
-const int THREE_SEC = 180;
+const int TEN_SEC = 600;
 const int MAX_COLOR = 6;
 const int CANT_REC = 7;
 const int REC_WIDTH = 250;
@@ -26,6 +26,7 @@ Vector2 mouse_pos = { 0,0 };
 Rectangle buttons[CANT_REC];
 Image img;
 Music background_music;
+Music gameOver_music;
 Wave wav;
 Sound hit_sound;
 
@@ -98,6 +99,7 @@ void init() {
 	InitAudioDevice();
 	SetMasterVolume(master_volume);
 	background_music = LoadMusicStream("resources/music/GoodOldTimes.ogg");
+	gameOver_music = LoadMusicStream("resources/music/gameOver.ogg");
 
 	//Sound doesn't load "Invalid data header"
 	//Tried both LoadSoundFromWave & LoadSound
@@ -185,67 +187,72 @@ void game() {
 }
 
 void update() {
-	for (int i = 0; i < CANT_REC; i++) {
-		if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
-			DrawRectangleRec(buttons[i], GRAY);
-			if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-				gameState = GAME;
-			if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-			{
-				ball.ball_speed_init.x -= 0.2f;
-				ball.ball_speed_init.y -= 0.2f;
-				if (ball.ball_speed_init.x < 1) {
-					ball.ball_speed_init.x = 1;
-					ball.ball_speed_init.y = 1;
-				}
-			}
-			if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-			{
-				ball.ball_speed_init.x += 0.2f;
-				ball.ball_speed_init.y += 0.2f;
-				if (ball.ball_speed_init.x > 10) {
-					ball.ball_speed_init.x = 10;
-					ball.ball_speed_init.y = 10;
-				}
-				ball.ball_speed = ball.ball_speed_init;
-			}
-			if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				switch (gameType)
+	switch (gameState)
+	{
+	case MENU: {
+		for (int i = 0; i < CANT_REC; i++) {
+			if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
+				DrawRectangleRec(buttons[i], GRAY);
+				if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+					gameState = GAME;
+				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-				case PvP:
-				{
-					gameType = PvB;
-					break;
+					ball.ball_speed_init.x -= 0.2f;
+					ball.ball_speed_init.y -= 0.2f;
+					if (ball.ball_speed_init.x < 1) {
+						ball.ball_speed_init.x = 1;
+						ball.ball_speed_init.y = 1;
+					}
 				}
-				case PvB:
+				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-					gameType = BvB;
-					break;
+					ball.ball_speed_init.x += 0.2f;
+					ball.ball_speed_init.y += 0.2f;
+					if (ball.ball_speed_init.x > 10) {
+						ball.ball_speed_init.x = 10;
+						ball.ball_speed_init.y = 10;
+					}
+					ball.ball_speed = ball.ball_speed_init;
+				}
+				if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					switch (gameType)
+					{
+					case PvP:
+					{
+						gameType = PvB;
+						break;
+					}
+					case PvB:
+					{
+						gameType = BvB;
+						break;
 
+					}
+					case BvB:
+					{
+						gameType = PvP;
+						break;
+					}
+					default:
+						break;
+					}
 				}
-				case BvB:
-				{
-					gameType = PvP;
-					break;
-				}
-				default:
-					break;
-				}
+				if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER1]);
+				if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER2]);
 			}
-			if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER1]);
-			if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER2]);
+			else
+				DrawRectangleRec(buttons[i], BROWN);
+
+
 		}
-		else
-			DrawRectangleRec(buttons[i], BROWN);
-
-
+		mouse_pos = GetMousePosition();
+		break;
 	}
-	UpdateMusicStream(background_music);
-	mouse_pos = GetMousePosition();
-	if (gameState == GAME) {
-		//Ball Collition
+	case GAME: {
 		PlayMusicStream(background_music);
+		UpdateMusicStream(background_music);
+		//Ball Collition
 		if ((ball.ball_position.y >= (GetScreenHeight() - ball.ball_radius)) || (ball.ball_position.y <= ball.ball_radius)) ball.ball_speed.y *= -1.0f;
 		if (ball.ball_position.x <= 0) {
 			players[PLAYER2].score++;
@@ -269,7 +276,7 @@ void update() {
 			ball.color = WHITE;
 			game_start = false;
 		}
-		//Player Collition
+		//Player Collision
 		if (CheckCollisionCircleRec(ball.ball_position, ball.ball_radius, players[PLAYER1].rec) ||
 			CheckCollisionCircleRec(ball.ball_position, ball.ball_radius, players[PLAYER2].rec)) {
 			//In case that the sound problem gets resolved
@@ -299,8 +306,13 @@ void update() {
 			ball.ball_position.x += ball.ball_speed.x;
 			ball.ball_position.y += ball.ball_speed.y;
 		}
+		break;
 	}
+	}
+
+
 }
+
 void input() {
 	if (game_start && gameType != BvB) {
 		//Player 1 controls
@@ -386,15 +398,18 @@ void draw() {
 	}
 	case END: {
 		StopMusicStream(background_music);
-		DrawText("GAME OVER", GetScreenWidth() / 3, GetScreenHeight() / 2, 50, RED);
+		PlayMusicStream(gameOver_music);
+		UpdateMusicStream(gameOver_music);
+		DrawText("GAME OVER", GetScreenWidth() / 3, GetScreenHeight() / 2.5f, 50, RED);
 		frames++;
 
-		if (frames > THREE_SEC)
+		if (frames > TEN_SEC)
 		{
 			players[PLAYER1].score = 0;
 			players[PLAYER2].score = 0;
 			game_start = false;
 			gameState = MENU;
+			StopMusicStream(gameOver_music);
 		}
 	}
 	}
@@ -451,8 +466,10 @@ void movIA() {
 }
 
 void close_all() {
+	//If hit_sound error is solved
 	//UnloadSound(hit_sound);
 	UnloadMusicStream(background_music);
+	UnloadMusicStream(gameOver_music);
 	UnloadTexture(background_texture);
 	UnloadTexture(players[PLAYER1].texture);
 	UnloadTexture(players[PLAYER2].texture);
