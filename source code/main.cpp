@@ -81,7 +81,7 @@ Color base_background;
 Image background_image;
 Texture2D background_texture;
 
-int main(void)
+int main()
 {
 	play();
 	return 0;
@@ -185,6 +185,62 @@ void game() {
 }
 
 void update() {
+	for (int i = 0; i < CANT_REC; i++) {
+		if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
+			DrawRectangleRec(buttons[i], GRAY);
+			if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				gameState = GAME;
+			if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+			{
+				ball.ball_speed_init.x -= 0.2f;
+				ball.ball_speed_init.y -= 0.2f;
+				if (ball.ball_speed_init.x < 1) {
+					ball.ball_speed_init.x = 1;
+					ball.ball_speed_init.y = 1;
+				}
+			}
+			if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+			{
+				ball.ball_speed_init.x += 0.2f;
+				ball.ball_speed_init.y += 0.2f;
+				if (ball.ball_speed_init.x > 10) {
+					ball.ball_speed_init.x = 10;
+					ball.ball_speed_init.y = 10;
+				}
+				ball.ball_speed = ball.ball_speed_init;
+			}
+			if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				switch (gameType)
+				{
+				case PvP:
+				{
+					gameType = PvB;
+					break;
+				}
+				case PvB:
+				{
+					gameType = BvB;
+					break;
+
+				}
+				case BvB:
+				{
+					gameType = PvP;
+					break;
+				}
+				default:
+					break;
+				}
+			}
+			if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER1]);
+			if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER2]);
+		}
+		else
+			DrawRectangleRec(buttons[i], BROWN);
+
+
+	}
 	UpdateMusicStream(background_music);
 	mouse_pos = GetMousePosition();
 	if (gameState == GAME) {
@@ -257,10 +313,12 @@ void input() {
 			if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player;
 			if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player;
 		}
+		//If the game is PvB
 		else {
 			movIA();
 		}
 	}
+	//If the game is BvB
 	else {
 		movIA();
 	}
@@ -291,63 +349,6 @@ void draw() {
 			DrawText("BvB", GetScreenWidth() / 2 + 75, GetScreenHeight() / 2 - 70, 20, BLUE);
 			break;
 		}
-		}
-
-		for (int i = 0; i < CANT_REC; i++) {
-			if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
-				DrawRectangleRec(buttons[i], GRAY);
-				if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-					gameState = GAME;
-				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-				{
-					ball.ball_speed_init.x -= 0.2f;
-					ball.ball_speed_init.y -= 0.2f;
-					if (ball.ball_speed_init.x < 1) {
-						ball.ball_speed_init.x = 1;
-						ball.ball_speed_init.y = 1;
-					}
-				}
-				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-				{
-					ball.ball_speed_init.x += 0.2f;
-					ball.ball_speed_init.y += 0.2f;
-					if (ball.ball_speed_init.x > 10) {
-						ball.ball_speed_init.x = 10;
-						ball.ball_speed_init.y = 10;
-					}
-					ball.ball_speed = ball.ball_speed_init;
-				}
-				if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-				{
-					switch (gameType)
-					{
-					case PvP:
-					{
-						gameType = PvB;
-						break;
-					}
-					case PvB:
-					{
-						gameType = BvB;
-						break;
-
-					}
-					case BvB:
-					{
-						gameType = PvP;
-						break;
-					}
-					default:
-						break;
-					}
-				}
-				if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER1]);
-				if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER2]);
-			}
-			else
-				DrawRectangleRec(buttons[i], BROWN);
-
-
 		}
 		DrawText("Start the game", GetScreenWidth() / 3, GetScreenHeight() / 2 + 90, 20, RAYWHITE);
 		DrawText("Change Gamemode", GetScreenWidth() / 3, GetScreenHeight() / 2 - 90, 20, RAYWHITE);
