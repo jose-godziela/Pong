@@ -87,6 +87,7 @@
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Raylib\lib;$(SolutionDir)lib\GLFW\lib-vc2017;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

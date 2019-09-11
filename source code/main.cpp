@@ -29,15 +29,17 @@ Music background_music;
 Wave wav;
 Sound hit_sound;
 
-struct player {
+struct Player {
 	Rectangle rec;
 	Vector2 size;
 	int score;
 	Color color;
 	Texture2D texture;
-}players[TOTAL_PLAYERS];
+};
 
-struct ball {
+Player players[TOTAL_PLAYERS];
+
+struct Ball {
 	Vector2 ball_position_init;
 	Vector2 ball_position;
 	Vector2 ball_speed_init;
@@ -45,19 +47,24 @@ struct ball {
 	int ball_radius;
 	Color color;
 	Texture2D texture;
-} ball;
+};
+Ball ball;
 
-enum gameState {
+enum GameState {
 	MENU,
 	GAME,
 	END
-}gameState;
+};
 
-enum gameType {
+GameState gameState;
+
+enum GameType {
 	PvP,	//Player vs Player
 	PvB,	//Player vs Bot
 	BvB		//Bot vs Bot
-}gameType;
+};
+
+GameType gameType;
 
 void init();
 void game();
@@ -67,7 +74,7 @@ void draw();
 void input();
 void movIA();
 void close_all();
-void randomColor(struct player* p);
+void randomColor(struct Player* p);
 int frames;
 bool game_start;
 Color base_background;
@@ -168,7 +175,7 @@ void init() {
 }
 
 void game() {
-	while (!WindowShouldClose())  
+	while (!WindowShouldClose())
 	{
 		input();
 		update();
@@ -291,23 +298,24 @@ void draw() {
 				DrawRectangleRec(buttons[i], GRAY);
 				if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 					gameState = GAME;
-				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-					ball.ball_speed_init.x--;
-					ball.ball_speed_init.y--;
+					ball.ball_speed_init.x -= 0.2f;
+					ball.ball_speed_init.y -= 0.2f;
 					if (ball.ball_speed_init.x < 1) {
 						ball.ball_speed_init.x = 1;
 						ball.ball_speed_init.y = 1;
 					}
 				}
-				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-					ball.ball_speed_init.x++;
-					ball.ball_speed_init.y--;
+					ball.ball_speed_init.x += 0.2f;
+					ball.ball_speed_init.y += 0.2f;
 					if (ball.ball_speed_init.x > 10) {
 						ball.ball_speed_init.x = 10;
 						ball.ball_speed_init.y = 10;
 					}
+					ball.ball_speed = ball.ball_speed_init;
 				}
 				if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
@@ -326,7 +334,6 @@ void draw() {
 					}
 					case BvB:
 					{
-
 						gameType = PvP;
 						break;
 					}
@@ -357,8 +364,8 @@ void draw() {
 	case GAME: {
 
 		DrawTexture(background_texture, -30, 0, WHITE);
-		if(!game_start)
-			DrawText("Press Space", GetScreenWidth() / 2 - 70 , GetScreenHeight() / 2 - 70, 20, RED);
+		if (!game_start)
+			DrawText("Press Space", GetScreenWidth() / 2 - 70, GetScreenHeight() / 2 - 70, 20, RED);
 
 		DrawText(FormatText("J1: %01i", players[PLAYER1].score), 10, 10, 20, players[PLAYER1].color);
 		DrawText(FormatText("J2: %01i", players[PLAYER2].score), 700, 10, 20, players[PLAYER2].color);
@@ -393,7 +400,7 @@ void draw() {
 	EndDrawing();
 }
 
-void randomColor(struct player* p) {
+void randomColor(struct Player* p) {
 	switch (GetRandomValue(1, MAX_COLOR))
 	{
 	case 1: {
