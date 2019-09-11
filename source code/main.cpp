@@ -75,7 +75,7 @@ void draw();
 void input();
 void movIA();
 void close_all();
-void randomColor(struct Player* p);
+void setRandomColorPlayer(Player &p);
 int frames;
 bool game_start;
 Color base_background;
@@ -238,8 +238,8 @@ void update() {
 						break;
 					}
 				}
-				if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER1]);
-				if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) randomColor(&players[PLAYER2]);
+				if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) setRandomColorPlayer(players[PLAYER1]);
+				if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) setRandomColorPlayer(players[PLAYER2]);
 			}
 			else
 				DrawRectangleRec(buttons[i], BROWN);
@@ -416,31 +416,31 @@ void draw() {
 	EndDrawing();
 }
 
-void randomColor(struct Player* p) {
+void setRandomColorPlayer(Player &p) {
 	switch (GetRandomValue(1, MAX_COLOR))
 	{
 	case 1: {
-		p->color = RED;
+		p.color = RED;
 		break;
 	}
 	case 2: {
-		p->color = BLUE;
+		p.color = BLUE;
 		break;
 	}
 	case 3: {
-		p->color = YELLOW;
+		p.color = YELLOW;
 		break;
 	}
 	case 4: {
-		p->color = GREEN;
+		p.color = GREEN;
 		break;
 	}
 	case 5: {
-		p->color = GRAY;
+		p.color = GRAY;
 		break;
 	}
 	case 6: {
-		p->color = WHITE;
+		p.color = WHITE;
 		break;
 	}
 	}
