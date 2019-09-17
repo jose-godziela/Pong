@@ -4,6 +4,9 @@
     <Filter Include="Codigo Fuente">
       <UniqueIdentifier>{e4050876-668a-4cec-b790-3a3c86d93990}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{d9ae60d0-b2b6-46d0-9105-76ffc17c41a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source code\main.cpp">
@@ -15,16 +18,46 @@
     <ClCompile Include="..\source code\ball.cpp">
       <Filter>Codigo Fuente</Filter>
     </ClCompile>
+    <ClCompile Include="..\source code\menu_screen.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source code\game_screen.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source code\audio.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source code\gameOver_screen.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source code\game_manager.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source code\players.h">
-      <Filter>Codigo Fuente</Filter>
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\menu_screen.h">
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\source code\libraries.h">
-      <Filter>Codigo Fuente</Filter>
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\game_screen.h">
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\source code\ball.h">
-      <Filter>Codigo Fuente</Filter>
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\audio.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\gameOver_screen.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\game_manager.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

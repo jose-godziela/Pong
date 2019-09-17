@@ -19,13 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\source code\audio.cpp" />
     <ClCompile Include="..\source code\ball.cpp" />
+    <ClCompile Include="..\source code\gameOver_screen.cpp" />
+    <ClCompile Include="..\source code\game_manager.cpp" />
+    <ClCompile Include="..\source code\game_screen.cpp" />
     <ClCompile Include="..\source code\main.cpp" />
+    <ClCompile Include="..\source code\menu_screen.cpp" />
     <ClCompile Include="..\source code\Players.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source code\audio.h" />
     <ClInclude Include="..\source code\ball.h" />
+    <ClInclude Include="..\source code\gameOver_screen.h" />
+    <ClInclude Include="..\source code\game_manager.h" />
+    <ClInclude Include="..\source code\game_screen.h" />
     <ClInclude Include="..\source code\libraries.h" />
+    <ClInclude Include="..\source code\menu_screen.h" />
     <ClInclude Include="..\source code\players.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

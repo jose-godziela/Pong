@@ -2,7 +2,7 @@
 float posX_player1 = 0;
 float posX_player2 = 0;
 float posY_players = 0;
-float vel_player = 5;
+float vel_player = 12.0f;
 Player players[TOTAL_PLAYERS];
 
 void init_players()
@@ -45,4 +45,34 @@ void reset_pos_players()
 	players[PLAYER1].rec.y = posY_players;
 	players[PLAYER2].rec.x = posX_player2;
 	players[PLAYER2].rec.y = posY_players;
+}
+
+void setRandomColorPlayer(Player &p) {
+	switch (GetRandomValue(1, MAX_COLOR))
+	{
+	case 1: {
+		p.color = RED;
+		break;
+	}
+	case 2: {
+		p.color = BLUE;
+		break;
+	}
+	case 3: {
+		p.color = YELLOW;
+		break;
+	}
+	case 4: {
+		p.color = GREEN;
+		break;
+	}
+	case 5: {
+		p.color = GRAY;
+		break;
+	}
+	case 6: {
+		p.color = WHITE;
+		break;
+	}
+	}
 }
