@@ -9,5 +9,22 @@
     <ClCompile Include="..\source code\main.cpp">
       <Filter>Codigo Fuente</Filter>
     </ClCompile>
+    <ClCompile Include="..\source code\Players.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source code\ball.cpp">
+      <Filter>Codigo Fuente</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source code\players.h">
+      <Filter>Codigo Fuente</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\libraries.h">
+      <Filter>Codigo Fuente</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\ball.h">
+      <Filter>Codigo Fuente</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

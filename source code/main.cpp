@@ -1,12 +1,8 @@
-#include "raylib.h"
-#include "glfw3.h"
+#include "libraries.h"
 
-const int TOTAL_PLAYERS = 2;
-const int PLAYER1 = 0;
-const int PLAYER2 = 1;
 const int FPS = 60;
 const int MOVEMENT = 22;
-const int TEN_SEC = 600;
+const int GAME_OVER_TIME = 180;
 const int MAX_COLOR = 6;
 const int CANT_REC = 7;
 const int REC_WIDTH = 250;
@@ -14,42 +10,16 @@ const int REC_HEIGHT = 25;
 const int screenWidth = 800;
 const int screenHeight = 450;
 const int score_max = 5;
-const int buttons_X = 800 / 3;
+const int buttons_X = 267; //800 divided by 3
 const float master_volume = 30.0f;
 const float speed_up = 0.5f;
-const float posX_player1 = screenWidth / 15;
-const float posX_player2 = (float)screenWidth - ((float)screenWidth / 12);
-const float posY_players = (float)screenHeight / 2;
-const float vel_player = 5.0f;
 const Vector2 speedY = { 5, 10 };
 Vector2 mouse_pos = { 0,0 };
-Rectangle buttons[CANT_REC];
-Image img;
 Music background_music;
 Music gameOver_music;
 Wave wav;
 Sound hit_sound;
-
-struct Player {
-	Rectangle rec;
-	Vector2 size;
-	int score;
-	Color color;
-	Texture2D texture;
-};
-
-Player players[TOTAL_PLAYERS];
-
-struct Ball {
-	Vector2 ball_position_init;
-	Vector2 ball_position;
-	Vector2 ball_speed_init;
-	Vector2 ball_speed;
-	int ball_radius;
-	Color color;
-	Texture2D texture;
-};
-Ball ball;
+Rectangle buttons[CANT_REC];
 
 enum GameState {
 	MENU,
@@ -112,42 +82,9 @@ void init() {
 	UnloadImage(background_image);
 
 	frames = 0;
-	//Ball Creation
-	ball.ball_position_init.x = GetScreenWidth() / 2;
-	ball.ball_position_init.y = GetScreenHeight() / 2;
-	ball.ball_position = ball.ball_position_init;
-	ball.ball_speed_init.x = 5.0f;
-	ball.ball_speed_init.y = 4.0f;
-	ball.ball_speed = ball.ball_speed_init;
-	ball.ball_radius = 20;
-	ball.color = WHITE;
-	//Ball texure
-	img = LoadImage("resources/ball.png");
-	ImageResize(&img, ball.ball_radius + 30, ball.ball_radius + 30);
-	ball.texture = LoadTextureFromImage(img);
-	UnloadImage(img);
-
-	//Player Creation
-	for (int i = 0; i < TOTAL_PLAYERS; i++) {
-		players[i].score = 0;
-		players[i].size.x = 10.0f;
-		players[i].size.y = 50.0f;
-		players[i].rec.x = posX_player1;
-		players[i].rec.y = posY_players;
-		players[i].rec.width = players[i].size.x;
-		players[i].rec.height = players[i].size.y;
-		players[i].color = BLUE;
-		//Player Texture
-		img = LoadImage("resources/players.png");
-		ImageRotateCW(&img);
-		ImageResize(&img, (int)players[i].size.x, (int)players[i].size.y);
-		players[i].texture = LoadTextureFromImage(img);
-		UnloadImage(img);
-
-	}
-	//Player 2 Position and base color
-	players[PLAYER2].rec.x = posX_player2;
-	players[PLAYER2].color = RED;
+	
+	init_players();
+	init_ball();
 
 	base_background = BLACK;
 
@@ -197,22 +134,11 @@ void update() {
 					gameState = GAME;
 				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-					ball.ball_speed_init.x -= 0.2f;
-					ball.ball_speed_init.y -= 0.2f;
-					if (ball.ball_speed_init.x < 1) {
-						ball.ball_speed_init.x = 1;
-						ball.ball_speed_init.y = 1;
-					}
+					substract_ball_speed();
 				}
 				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
-					ball.ball_speed_init.x += 0.2f;
-					ball.ball_speed_init.y += 0.2f;
-					if (ball.ball_speed_init.x > 10) {
-						ball.ball_speed_init.x = 10;
-						ball.ball_speed_init.y = 10;
-					}
-					ball.ball_speed = ball.ball_speed_init;
+					add_ball_speed();
 				}
 				if (CheckCollisionPointRec(mouse_pos, buttons[4]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
@@ -259,18 +185,12 @@ void update() {
 			ball.ball_speed = ball.ball_speed_init;
 			ball.ball_position = ball.ball_position_init;
 			ball.color = WHITE;
-			players[PLAYER1].rec.x = posX_player1;
-			players[PLAYER1].rec.y = posY_players;
-			players[PLAYER2].rec.x = posX_player2;
-			players[PLAYER2].rec.y = posY_players;
+			reset_pos_players();
 			game_start = false;
 		}
 		if (ball.ball_position.x >= GetScreenWidth()) {
 			players[PLAYER1].score++;
-			players[PLAYER1].rec.x = posX_player1;
-			players[PLAYER1].rec.y = posY_players;
-			players[PLAYER2].rec.x = posX_player2;
-			players[PLAYER2].rec.y = posY_players;
+			reset_pos_players();
 			ball.ball_position = ball.ball_position_init;
 			ball.ball_speed = ball.ball_speed_init;
 			ball.color = WHITE;
@@ -317,13 +237,13 @@ void input() {
 	if (game_start && gameType != BvB) {
 		//Player 1 controls
 		//Enters here even in PvB
-		if (IsKeyDown(KEY_UP)) players[PLAYER2].rec.y -= vel_player;
-		if (IsKeyDown(KEY_DOWN)) players[PLAYER2].rec.y += vel_player;
+		if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player;
+		if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player;
 		//Player 2 Controls
 		//Checks if the gameType is versus a player or a bot
 		if (gameType == PvP) {
-			if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player;
-			if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player;
+			if (IsKeyDown(KEY_UP)) players[PLAYER2].rec.y -= vel_player;
+			if (IsKeyDown(KEY_DOWN)) players[PLAYER2].rec.y += vel_player;
 		}
 		//If the game is PvB
 		else {
@@ -339,6 +259,7 @@ void input() {
 		game_start = true;
 	}
 }
+
 void draw() {
 	BeginDrawing();
 	ClearBackground(base_background);
@@ -403,7 +324,7 @@ void draw() {
 		DrawText("GAME OVER", GetScreenWidth() / 3, GetScreenHeight() / 2.5f, 50, RED);
 		frames++;
 
-		if (frames > TEN_SEC)
+		if (frames > GAME_OVER_TIME)
 		{
 			players[PLAYER1].score = 0;
 			players[PLAYER2].score = 0;
