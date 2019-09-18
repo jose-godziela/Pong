@@ -1,63 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Codigo Fuente">
-      <UniqueIdentifier>{e4050876-668a-4cec-b790-3a3c86d93990}</UniqueIdentifier>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{0f6fd8cd-0408-4025-b623-fe535e66b128}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers">
-      <UniqueIdentifier>{d9ae60d0-b2b6-46d0-9105-76ffc17c41a8}</UniqueIdentifier>
+    <Filter Include="entities">
+      <UniqueIdentifier>{f95c98d5-e7aa-4505-9c0a-87114cbdff30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manager">
+      <UniqueIdentifier>{1937661d-1bf9-4a7e-be92-e21575c52588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="screens">
+      <UniqueIdentifier>{0ad05682-b0c9-4858-ad15-46acf3a0ae5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source code\main.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\screens\game_screen.cpp">
+      <Filter>screens</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\Players.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\screens\gameOver_screen.cpp">
+      <Filter>screens</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\ball.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\screens\menu_screen.cpp">
+      <Filter>screens</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\menu_screen.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\manager\game_manager.cpp">
+      <Filter>manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\game_screen.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\entities\ball.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\audio.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\entities\Players.cpp">
+      <Filter>entities</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\gameOver_screen.cpp">
-      <Filter>Codigo Fuente</Filter>
+    <ClCompile Include="..\source code\audio\audio.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\game_manager.cpp">
-      <Filter>Codigo Fuente</Filter>
-    </ClCompile>
+    <ClCompile Include="..\source code\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source code\players.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\screens\game_screen.h">
+      <Filter>screens</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\menu_screen.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\screens\gameOver_screen.h">
+      <Filter>screens</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\libraries.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\screens\menu_screen.h">
+      <Filter>screens</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\game_screen.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\manager\game_manager.h">
+      <Filter>manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\ball.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\manager\libraries.h">
+      <Filter>manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\audio.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\entities\ball.h">
+      <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\gameOver_screen.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\entities\players.h">
+      <Filter>entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\game_manager.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="..\source code\audio\audio.h">
+      <Filter>Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

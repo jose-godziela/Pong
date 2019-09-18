@@ -4,19 +4,22 @@ Texture2D background_texture;
 Image background_image;
 Color base_background;
 
-void close_all();
-void draw();
-void game();
-void init();
-void input();
-void movIA();
-void update();
+static void close_all();
+static void draw();
+static void game();
+static void init();
+static void input();
+static void movIA();
+static void update();
+static void init_buttons();
 
 void play() {
+
 	init();
 	game();
 }
-void init() {
+
+static void init() {
 	game_start = false;
 	InitWindow(screenWidth, screenHeight, "YEET: ATARI 2600 VERSION");
 
@@ -39,32 +42,12 @@ void init() {
 
 	base_background = BLACK;
 
-	int buttons_Y = screenHeight - 140;
-
-	for (int i = 0; i < CANT_REC; i++)
-	{
-		buttons[i].height = REC_HEIGHT;
-		buttons[i].width = REC_WIDTH;
-		buttons[i].x = buttons_X;
-		buttons[i].y = buttons_Y;
-		buttons_Y -= 45;
-
-		//Change color creation
-		if (i > 4)
-		{
-			buttons[i].height = 20;
-			buttons[i].width = 50;
-			buttons[i].x = GetScreenWidth() / 14;
-			buttons[i].y = GetScreenHeight() / (i - 2);
-		}
-
-	}
+	init_buttons();
 
 	gameState = MENU;
 	SetTargetFPS(FPS);
 }
-
-void game() {
+static void game() {
 	while (!WindowShouldClose())
 	{
 		input();
@@ -73,8 +56,7 @@ void game() {
 	}
 	close_all();
 }
-
-void update()
+static void update()
 {
 	switch (gameState)
 	{
@@ -95,8 +77,7 @@ void update()
 	}
 	}
 }
-
-void input() {
+static void input() {
 	if (game_start && gameType != BvB) {
 		//Player 1 controls
 		//Enters here even in PvB
@@ -122,8 +103,7 @@ void input() {
 		game_start = true;
 	}
 }
-
-void draw() {
+static void draw() {
 	BeginDrawing();
 	ClearBackground(base_background);
 	switch (gameState) {
@@ -140,8 +120,7 @@ void draw() {
 	}
 	EndDrawing();
 }
-
-void movIA() {
+static void movIA() {
 	if (gameType != PvP) {
 		if (ball.ball_position.y < players[PLAYER2].rec.y) {
 			players[PLAYER2].rec.y -= vel_player;
@@ -159,17 +138,39 @@ void movIA() {
 		}
 	}
 }
-
-void close_texture()
+static void close_texture()
 {
 	UnloadTexture(background_texture);
 	UnloadTexture(players[PLAYER1].texture);
 	UnloadTexture(players[PLAYER2].texture);
 }
-void close_all() {
+static void close_all() {
 	//If hit_sound error is solved
 	//UnloadSound(hit_sound);
 	close_audio();
 	close_texture();
 	CloseWindow();
+}
+static void init_buttons()
+{
+	int buttons_Y = screenHeight - 140;
+
+	for (int i = 0; i < CANT_REC; i++)
+	{
+		buttons[i].height = REC_HEIGHT;
+		buttons[i].width = REC_WIDTH;
+		buttons[i].x = buttons_X;
+		buttons[i].y = buttons_Y;
+		buttons_Y -= 45;
+
+		//Change color creation
+		if (i > 4)
+		{
+			buttons[i].height = 20;
+			buttons[i].width = 50;
+			buttons[i].x = GetScreenWidth() / 14;
+			buttons[i].y = GetScreenHeight() / (i - 2);
+		}
+
+	}
 }

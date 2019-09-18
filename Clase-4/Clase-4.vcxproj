@@ -19,24 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source code\audio.cpp" />
-    <ClCompile Include="..\source code\ball.cpp" />
-    <ClCompile Include="..\source code\gameOver_screen.cpp" />
-    <ClCompile Include="..\source code\game_manager.cpp" />
-    <ClCompile Include="..\source code\game_screen.cpp" />
+    <ClCompile Include="..\source code\audio\audio.cpp" />
+    <ClCompile Include="..\source code\entities\ball.cpp" />
+    <ClCompile Include="..\source code\entities\Players.cpp" />
     <ClCompile Include="..\source code\main.cpp" />
-    <ClCompile Include="..\source code\menu_screen.cpp" />
-    <ClCompile Include="..\source code\Players.cpp" />
+    <ClCompile Include="..\source code\manager\game_manager.cpp" />
+    <ClCompile Include="..\source code\screens\gameOver_screen.cpp" />
+    <ClCompile Include="..\source code\screens\game_screen.cpp" />
+    <ClCompile Include="..\source code\screens\menu_screen.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source code\audio.h" />
-    <ClInclude Include="..\source code\ball.h" />
-    <ClInclude Include="..\source code\gameOver_screen.h" />
-    <ClInclude Include="..\source code\game_manager.h" />
-    <ClInclude Include="..\source code\game_screen.h" />
-    <ClInclude Include="..\source code\libraries.h" />
-    <ClInclude Include="..\source code\menu_screen.h" />
-    <ClInclude Include="..\source code\players.h" />
+    <ClInclude Include="..\source code\audio\audio.h" />
+    <ClInclude Include="..\source code\entities\ball.h" />
+    <ClInclude Include="..\source code\entities\players.h" />
+    <ClInclude Include="..\source code\manager\game_manager.h" />
+    <ClInclude Include="..\source code\manager\libraries.h" />
+    <ClInclude Include="..\source code\screens\gameOver_screen.h" />
+    <ClInclude Include="..\source code\screens\game_screen.h" />
+    <ClInclude Include="..\source code\screens\menu_screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -123,7 +123,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\Raylib\include;$(SolutionDir)lib\GLFW\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)source code\audio;$(SolutionDir)source code\entities;$(SolutionDir)source code\manager;$(SolutionDir)source code\screens;$(SolutionDir)lib\Raylib\include;$(SolutionDir)lib\GLFW\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

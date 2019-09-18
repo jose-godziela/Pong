@@ -15,6 +15,3 @@ extern Ball ball;
 void init_ball();
 void add_ball_speed();
 void substract_ball_speed();
-
-
-
