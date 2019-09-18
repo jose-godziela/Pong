@@ -1,5 +1,4 @@
-#ifndef PLAYERS_H
-#define PLAYERS_H
+#pragma once
 #include "libraries.h"
 const int TOTAL_PLAYERS = 2;
 const int PLAYER1 = 0;
@@ -26,4 +25,3 @@ void reset_pos_players();
 
 void setRandomColorPlayer(Player &p);
 
-#endif

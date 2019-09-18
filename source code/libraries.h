@@ -1,5 +1,4 @@
-#ifndef LIBRARIES_H
-#define LIBRARIES_H
+#pragma once
 #include "raylib.h"
 #include "glfw3.h"
 #include "players.h"
@@ -9,4 +8,3 @@
 #include "audio.h"
 #include "gameOver_screen.h"
 #include "game_manager.h"
-#endif

@@ -1,5 +1,4 @@
-#ifndef BALL_H
-#define BALL_H
+#pragma once
 #include "libraries.h"
 
 struct Ball {
@@ -19,4 +18,3 @@ void substract_ball_speed();
 
 
 
-#endif
