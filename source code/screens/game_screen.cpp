@@ -59,7 +59,7 @@ namespace Godziela
 			//In case that the sound problem gets resolved
 			//PlaySound(hit_sound);
 			ball.ball_speed.x *= -1.0f;
-			ball.ball_speed.y = -1.0f*(GetRandomValue(speedY.x, speedY.y));
+			ball.ball_speed.y = -1.0f * (GetRandomValue(speedY.x, speedY.y));
 			if (ball.ball_speed.x < 0) {
 				ball.ball_speed.x -= speed_up;
 				ball.ball_speed.y -= speed_up;
