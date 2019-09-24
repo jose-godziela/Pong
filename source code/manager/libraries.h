@@ -6,5 +6,5 @@
 #include "menu_screen.h"
 #include "game_screen.h"
 #include "audio.h"
-#include "gameOver_screen.h"
+#include "game_over_screen.h"
 #include "game_manager.h"

@@ -2,14 +2,14 @@
 float posX_player1 = 0;
 float posX_player2 = 0;
 float posY_players = 0;
-float vel_player = 12.0f;
+float vel_player = 8.0f;
 Player players[TOTAL_PLAYERS];
 
 void init_players()
 {
-	posX_player1 = GetScreenWidth() / 15;
-	posX_player2 = GetScreenWidth() - (GetScreenWidth() / 12);
-	posY_players = GetScreenHeight() / 2;
+	posX_player1 = (float)(GetScreenWidth() / 15);
+	posX_player2 = (float)(GetScreenWidth() - (GetScreenWidth() / 12));
+	posY_players = (float)(GetScreenHeight() / 2);
 	//Players Creation
 	for (int i = 0; i < TOTAL_PLAYERS; i++) {
 		players[i].score = 0;
@@ -47,7 +47,7 @@ void reset_pos_players()
 	players[PLAYER2].rec.y = posY_players;
 }
 
-void setRandomColorPlayer(Player &p) {
+void set_random_color_player(Player &p) {
 	switch (GetRandomValue(1, MAX_COLOR))
 	{
 	case 1: {

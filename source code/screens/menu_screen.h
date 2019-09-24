@@ -20,6 +20,7 @@ extern Vector2 mouse_pos;
 extern Rectangle buttons[CANT_REC];
 extern Music background_music;
 extern Music gameOver_music;
+extern Music menu_music;
 
 
 void draw_menu();

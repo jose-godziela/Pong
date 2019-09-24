@@ -1,9 +1,10 @@
-#include "libraries.h"
+#include "menu_screen.h"
 
 GameType gameType;
 GameState gameState;
 Vector2 mouse_pos = { 0,0 };
 Rectangle buttons[CANT_REC];
+Music menu_music;
 
 void start()
 {
@@ -83,8 +84,8 @@ void change_menu_options()
 					break;
 				}
 			}
-			if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) setRandomColorPlayer(players[PLAYER1]);
-			if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) setRandomColorPlayer(players[PLAYER2]);
+			if (CheckCollisionPointRec(mouse_pos, buttons[6]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) set_random_color_player(players[PLAYER1]);
+			if (CheckCollisionPointRec(mouse_pos, buttons[5]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) set_random_color_player(players[PLAYER2]);
 		}
 		else
 			DrawRectangleRec(buttons[i], BROWN);

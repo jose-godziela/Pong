@@ -18,10 +18,10 @@ void draw_game()
 
 	DrawRectangleRec(players[PLAYER1].rec, players[PLAYER1].color);
 	DrawRectangleRec(players[PLAYER2].rec, players[PLAYER2].color);
-	DrawTexture(players[PLAYER1].texture, players[PLAYER1].rec.x, players[PLAYER1].rec.y, players[PLAYER1].color);
-	DrawTexture(players[PLAYER2].texture, players[PLAYER2].rec.x, players[PLAYER2].rec.y, players[PLAYER2].color);
+	DrawTexture(players[PLAYER1].texture, (int)players[PLAYER1].rec.x, (int)players[PLAYER1].rec.y, players[PLAYER1].color);
+	DrawTexture(players[PLAYER2].texture, (int)players[PLAYER2].rec.x, (int)players[PLAYER2].rec.y, players[PLAYER2].color);
 	DrawCircleV(ball.ball_position, ball.ball_radius, ball.color);
-	DrawTexture(ball.texture, ball.ball_position.x - 23, ball.ball_position.y - 23, WHITE);
+	DrawTexture(ball.texture, (int)ball.ball_position.x - 23, (int)ball.ball_position.y - 23, WHITE);
 
 	if (players[PLAYER1].score >= score_max || players[PLAYER2].score >= score_max) {
 		gameState = END;
@@ -56,7 +56,7 @@ void game_update()
 		//In case that the sound problem gets resolved
 		//PlaySound(hit_sound);
 		ball.ball_speed.x *= -1.0f;
-		ball.ball_speed.y = -(GetRandomValue(speedY.x, speedY.y));
+		ball.ball_speed.y = -1 * (GetRandomValue(speedY.x, speedY.y));
 		ball.ball_speed.y *= -1.0f;
 		if (ball.ball_speed.x < 0) {
 			ball.ball_speed.x -= speed_up;
@@ -72,9 +72,9 @@ void game_update()
 		}
 	}
 	//wall player's collition
-	if (players[PLAYER1].rec.y > GetScreenHeight() - 50) players[PLAYER1].rec.y = GetScreenHeight() - 50;
+	if (players[PLAYER1].rec.y > GetScreenHeight() - 50) players[PLAYER1].rec.y = (float)GetScreenHeight() - 50;
 	if (players[PLAYER1].rec.y < 0) players[PLAYER1].rec.y = 0;
-	if (players[PLAYER2].rec.y > GetScreenHeight() - 50) players[PLAYER2].rec.y = GetScreenHeight() - 50;
+	if (players[PLAYER2].rec.y > GetScreenHeight() - 50) players[PLAYER2].rec.y = (float)GetScreenHeight() - 50;
 	if (players[PLAYER2].rec.y < 0) players[PLAYER2].rec.y = 0;
 	if (game_start) {
 		ball.ball_position.x += ball.ball_speed.x;

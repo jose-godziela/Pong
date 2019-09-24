@@ -18,9 +18,6 @@
     <ClCompile Include="..\source code\screens\game_screen.cpp">
       <Filter>screens</Filter>
     </ClCompile>
-    <ClCompile Include="..\source code\screens\gameOver_screen.cpp">
-      <Filter>screens</Filter>
-    </ClCompile>
     <ClCompile Include="..\source code\screens\menu_screen.cpp">
       <Filter>screens</Filter>
     </ClCompile>
@@ -37,12 +34,12 @@
       <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="..\source code\main.cpp" />
+    <ClCompile Include="..\source code\screens\game_over_screen.cpp">
+      <Filter>screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source code\screens\game_screen.h">
-      <Filter>screens</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source code\screens\gameOver_screen.h">
       <Filter>screens</Filter>
     </ClInclude>
     <ClInclude Include="..\source code\screens\menu_screen.h">
@@ -62,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="..\source code\audio\audio.h">
       <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source code\screens\game_over_screen.h">
+      <Filter>screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

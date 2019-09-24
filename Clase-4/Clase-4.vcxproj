@@ -24,7 +24,7 @@
     <ClCompile Include="..\source code\entities\Players.cpp" />
     <ClCompile Include="..\source code\main.cpp" />
     <ClCompile Include="..\source code\manager\game_manager.cpp" />
-    <ClCompile Include="..\source code\screens\gameOver_screen.cpp" />
+    <ClCompile Include="..\source code\screens\game_over_screen.cpp" />
     <ClCompile Include="..\source code\screens\game_screen.cpp" />
     <ClCompile Include="..\source code\screens\menu_screen.cpp" />
   </ItemGroup>
@@ -34,7 +34,7 @@
     <ClInclude Include="..\source code\entities\players.h" />
     <ClInclude Include="..\source code\manager\game_manager.h" />
     <ClInclude Include="..\source code\manager\libraries.h" />
-    <ClInclude Include="..\source code\screens\gameOver_screen.h" />
+    <ClInclude Include="..\source code\screens\game_over_screen.h" />
     <ClInclude Include="..\source code\screens\game_screen.h" />
     <ClInclude Include="..\source code\screens\menu_screen.h" />
   </ItemGroup>
@@ -90,8 +90,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)exes\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,7 +103,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\Raylib\include;$(SolutionDir)lib\GLFW\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)source code\audio;$(SolutionDir)source code\entities;$(SolutionDir)source code\manager;$(SolutionDir)source code\screens;$(SolutionDir)lib\Raylib\include;$(SolutionDir)lib\GLFW\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Raylib\lib;$(SolutionDir)lib\GLFW\lib-vc2017;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

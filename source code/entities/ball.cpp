@@ -4,8 +4,8 @@ Ball ball;
 void init_ball()
 {
 	//Ball Creation
-	ball.ball_position_init.x = GetScreenWidth() / 2;
-	ball.ball_position_init.y = GetScreenHeight() / 2;
+	ball.ball_position_init.x = (float)(GetScreenWidth() / 2);
+	ball.ball_position_init.y = (float)GetScreenHeight() / 2;
 	ball.ball_position = ball.ball_position_init;
 	ball.ball_speed_init.x = 5.0f;
 	ball.ball_speed_init.y = 4.0f;
@@ -14,7 +14,7 @@ void init_ball()
 	ball.color = WHITE;
 	//Ball texure
 	ball.img = LoadImage("resources/ball.png");
-	ImageResize(&ball.img, ball.ball_radius + 30, ball.ball_radius + 30);
+	ImageResize(&ball.img, (int)ball.ball_radius + 30, (int)ball.ball_radius + 30);
 	ball.texture = LoadTextureFromImage(ball.img);
 	UnloadImage(ball.img);
 }

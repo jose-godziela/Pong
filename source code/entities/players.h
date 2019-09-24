@@ -23,5 +23,5 @@ extern Player players[TOTAL_PLAYERS];
 void init_players();
 void reset_pos_players();
 
-void setRandomColorPlayer(Player &p);
+void set_random_color_player(Player &p);
 

@@ -1,10 +1,14 @@
-#include "gameOver_screen.h"
+#include "game_over_screen.h"
 
 int frames;
+float draw_x;
+float draw_y;
 
-void init_frames()
+void init_game_over()
 {
 	frames = 0;
+	draw_x = (float)(GetScreenWidth() / 3);
+	draw_y = (float)(GetScreenWidth() / 2.5f);
 }
 
 void draw_gameOver()
@@ -12,10 +16,10 @@ void draw_gameOver()
 	StopMusicStream(background_music);
 	PlayMusicStream(gameOver_music);
 	UpdateMusicStream(gameOver_music);
-	DrawText("GAME OVER", GetScreenWidth() / 3, GetScreenHeight() / 2.5f, 50, RED);
+	DrawText("GAME OVER", (int)draw_x, (int)draw_y, 50, RED);
 	frames++;
 
-	if (frames > GAME_OVER_TIME)
+	if (frames > game_over_time)
 	{
 		players[PLAYER1].score = 0;
 		players[PLAYER2].score = 0;

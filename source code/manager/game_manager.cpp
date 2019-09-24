@@ -9,7 +9,7 @@ static void draw();
 static void game();
 static void init();
 static void input();
-static void movIA();
+static void mov_ia();
 static void update();
 static void init_buttons();
 
@@ -91,12 +91,12 @@ static void input() {
 		}
 		//If the game is PvB
 		else {
-			movIA();
+			mov_ia();
 		}
 	}
 	//If the game is BvB
 	else {
-		movIA();
+		mov_ia();
 	}
 
 	if (IsKeyDown(KEY_SPACE) && gameState == GAME) {
@@ -120,7 +120,7 @@ static void draw() {
 	}
 	EndDrawing();
 }
-static void movIA() {
+static void mov_ia() {
 	if (gameType != PvP) {
 		if (ball.ball_position.y < players[PLAYER2].rec.y) {
 			players[PLAYER2].rec.y -= vel_player;
@@ -159,8 +159,8 @@ static void init_buttons()
 	{
 		buttons[i].height = REC_HEIGHT;
 		buttons[i].width = REC_WIDTH;
-		buttons[i].x = buttons_X;
-		buttons[i].y = buttons_Y;
+		buttons[i].x = (float)buttons_X;
+		buttons[i].y = (float)buttons_Y;
 		buttons_Y -= 45;
 
 		//Change color creation
@@ -168,8 +168,8 @@ static void init_buttons()
 		{
 			buttons[i].height = 20;
 			buttons[i].width = 50;
-			buttons[i].x = GetScreenWidth() / 14;
-			buttons[i].y = GetScreenHeight() / (i - 2);
+			buttons[i].x = (float)(GetScreenWidth() / 14);
+			buttons[i].y = (float)(GetScreenHeight() / (i - 2));
 		}
 
 	}

@@ -6,7 +6,7 @@ struct Ball {
 	Vector2 ball_position;
 	Vector2 ball_speed_init;
 	Vector2 ball_speed;
-	int ball_radius;
+	float ball_radius;
 	Color color;
 	Texture2D texture;
 	Image img;
