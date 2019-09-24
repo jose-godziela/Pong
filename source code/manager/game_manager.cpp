@@ -45,7 +45,6 @@ static void init() {
 	init_buttons();
 
 	gameState = MENU;
-	SetTargetFPS(FPS);
 }
 static void game() {
 	while (!WindowShouldClose())
@@ -81,13 +80,13 @@ static void input() {
 	if (game_start && gameType != BvB) {
 		//Player 1 controls
 		//Enters here even in PvB
-		if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player;
-		if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player;
+		if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player * GetFrameTime();
+		if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player * GetFrameTime();
 		//Player 2 Controls
 		//Checks if the gameType is versus a player or a bot
 		if (gameType == PvP) {
-			if (IsKeyDown(KEY_UP)) players[PLAYER2].rec.y -= vel_player;
-			if (IsKeyDown(KEY_DOWN)) players[PLAYER2].rec.y += vel_player;
+			if (IsKeyDown(KEY_UP)) players[PLAYER2].rec.y -= vel_player * GetFrameTime();
+			if (IsKeyDown(KEY_DOWN)) players[PLAYER2].rec.y += vel_player * GetFrameTime();
 		}
 		//If the game is PvB
 		else {
@@ -123,17 +122,17 @@ static void draw() {
 static void mov_ia() {
 	if (gameType != PvP) {
 		if (ball.ball_position.y < players[PLAYER2].rec.y) {
-			players[PLAYER2].rec.y -= vel_player;
+			players[PLAYER2].rec.y -= vel_player * GetFrameTime();
 		}
 		if (ball.ball_position.y > players[PLAYER2].rec.y) {
-			players[PLAYER2].rec.y += vel_player;
+			players[PLAYER2].rec.y += vel_player * GetFrameTime();
 		}
 		if (gameType == BvB) {
 			if (ball.ball_position.y < players[PLAYER1].rec.y) {
-				players[PLAYER1].rec.y -= vel_player;
+				players[PLAYER1].rec.y -= vel_player * GetFrameTime();
 			}
 			if (ball.ball_position.y > players[PLAYER1].rec.y) {
-				players[PLAYER1].rec.y += vel_player;
+				players[PLAYER1].rec.y += vel_player * GetFrameTime();
 			}
 		}
 	}

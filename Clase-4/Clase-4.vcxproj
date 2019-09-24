@@ -33,7 +33,6 @@
     <ClInclude Include="..\source code\entities\ball.h" />
     <ClInclude Include="..\source code\entities\players.h" />
     <ClInclude Include="..\source code\manager\game_manager.h" />
-    <ClInclude Include="..\source code\manager\libraries.h" />
     <ClInclude Include="..\source code\screens\game_over_screen.h" />
     <ClInclude Include="..\source code\screens\game_screen.h" />
     <ClInclude Include="..\source code\screens\menu_screen.h" />

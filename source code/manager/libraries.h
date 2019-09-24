@@ -1,10 +1,4 @@
 #pragma once
 #include "raylib.h"
 #include "glfw3.h"
-#include "players.h"
-#include "ball.h"
-#include "menu_screen.h"
-#include "game_screen.h"
-#include "audio.h"
-#include "game_over_screen.h"
-#include "game_manager.h"
+

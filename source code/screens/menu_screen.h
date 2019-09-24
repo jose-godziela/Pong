@@ -1,5 +1,7 @@
 #pragma once
-#include "libraries.h"
+#include "raylib.h"
+#include "ball.h"
+#include "players.h"
 const int CANT_REC = 7;
 
 enum GameType {

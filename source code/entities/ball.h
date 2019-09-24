@@ -1,5 +1,5 @@
 #pragma once
-#include "libraries.h"
+#include "raylib.h"
 
 struct Ball {
 	Vector2 ball_position_init;

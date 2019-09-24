@@ -56,8 +56,7 @@ void game_update()
 		//In case that the sound problem gets resolved
 		//PlaySound(hit_sound);
 		ball.ball_speed.x *= -1.0f;
-		ball.ball_speed.y = -1 * (GetRandomValue(speedY.x, speedY.y));
-		ball.ball_speed.y *= -1.0f;
+		ball.ball_speed.y = -1.0f*(GetRandomValue(speedY.x, speedY.y));
 		if (ball.ball_speed.x < 0) {
 			ball.ball_speed.x -= speed_up;
 			ball.ball_speed.y -= speed_up;
@@ -77,7 +76,7 @@ void game_update()
 	if (players[PLAYER2].rec.y > GetScreenHeight() - 50) players[PLAYER2].rec.y = (float)GetScreenHeight() - 50;
 	if (players[PLAYER2].rec.y < 0) players[PLAYER2].rec.y = 0;
 	if (game_start) {
-		ball.ball_position.x += ball.ball_speed.x;
-		ball.ball_position.y += ball.ball_speed.y;
+		ball.ball_position.x += ball.ball_speed.x * GetFrameTime();
+		ball.ball_position.y += ball.ball_speed.y * GetFrameTime();
 	}
 }

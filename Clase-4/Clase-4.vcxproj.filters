@@ -48,9 +48,6 @@
     <ClInclude Include="..\source code\manager\game_manager.h">
       <Filter>manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\source code\manager\libraries.h">
-      <Filter>manager</Filter>
-    </ClInclude>
     <ClInclude Include="..\source code\entities\ball.h">
       <Filter>entities</Filter>
     </ClInclude>

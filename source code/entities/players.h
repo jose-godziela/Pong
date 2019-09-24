@@ -1,5 +1,5 @@
 #pragma once
-#include "libraries.h"
+#include "raylib.h"
 const int TOTAL_PLAYERS = 2;
 const int PLAYER1 = 0;
 const int PLAYER2 = 1;

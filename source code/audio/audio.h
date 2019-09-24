@@ -1,5 +1,5 @@
 #pragma once
-#include "libraries.h"
+#include "raylib.h"
 const float master_volume = 30.0f;
 
 extern Music background_music;

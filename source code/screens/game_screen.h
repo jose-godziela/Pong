@@ -1,8 +1,12 @@
 #pragma once
-#include "libraries.h"
+#include "raylib.h"
+#include "players.h"
+#include "ball.h"
+#include "menu_screen.h"
+#include "game_manager.h"
 
-const Vector2 speedY = { 5, 10 };
-const float speed_up = 0.5f;
+const Vector2 speedY = { 100, 500 };
+const float speed_up = 35.0f;
 const int score_max = 5;
 const int MOVEMENT = 22;
 

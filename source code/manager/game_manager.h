@@ -1,5 +1,10 @@
 #pragma once
-#include "libraries.h"
+#include "players.h"
+#include "ball.h"
+#include "menu_screen.h"
+#include "game_screen.h"
+#include "audio.h"
+#include "game_over_screen.h"
 
 const int screenWidth = 800;
 const int screenHeight = 450; 

@@ -7,8 +7,8 @@ void init_ball()
 	ball.ball_position_init.x = (float)(GetScreenWidth() / 2);
 	ball.ball_position_init.y = (float)GetScreenHeight() / 2;
 	ball.ball_position = ball.ball_position_init;
-	ball.ball_speed_init.x = 5.0f;
-	ball.ball_speed_init.y = 4.0f;
+	ball.ball_speed_init.x = 250.0f;
+	ball.ball_speed_init.y = 400.0f;
 	ball.ball_speed = ball.ball_speed_init;
 	ball.ball_radius = 20;
 	ball.color = WHITE;
@@ -22,9 +22,9 @@ void substract_ball_speed()
 {
 	ball.ball_speed_init.x -= 0.2f;
 	ball.ball_speed_init.y -= 0.2f;
-	if (ball.ball_speed_init.x < 1) {
-		ball.ball_speed_init.x = 1;
-		ball.ball_speed_init.y = 1;
+	if (ball.ball_speed_init.x < 100) {
+		ball.ball_speed_init.x = 100;
+		ball.ball_speed_init.y = 100;
 	}
 	ball.ball_speed = ball.ball_speed_init;
 }
@@ -32,9 +32,9 @@ void add_ball_speed()
 {
 	ball.ball_speed_init.x += 0.2f;
 	ball.ball_speed_init.y += 0.2f;
-	if (ball.ball_speed_init.x > 10) {
-		ball.ball_speed_init.x = 10;
-		ball.ball_speed_init.y = 10;
+	if (ball.ball_speed_init.x > 500) {
+		ball.ball_speed_init.x = 500;
+		ball.ball_speed_init.y = 500;
 	}
 	ball.ball_speed = ball.ball_speed_init;
 }

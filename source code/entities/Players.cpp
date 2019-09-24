@@ -2,7 +2,7 @@
 float posX_player1 = 0;
 float posX_player2 = 0;
 float posY_players = 0;
-float vel_player = 8.0f;
+float vel_player = 400.0f;
 Player players[TOTAL_PLAYERS];
 
 void init_players()
