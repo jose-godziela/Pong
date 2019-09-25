@@ -8,7 +8,7 @@
 
 namespace Godziela
 {
-	const Vector2 speedY = { 100, 500 };
+	const Vector2 speedY = { 200, 500 };
 	const float speed_up = 35.0f;
 	const int score_max = 5;
 	const int MOVEMENT = 22;
@@ -17,4 +17,5 @@ namespace Godziela
 
 	void game_update();
 	void draw_game();
+	void init_game_screen();
 }

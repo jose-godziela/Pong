@@ -35,7 +35,7 @@ namespace Godziela
 	{
 		PlayMusicStream(background_music);
 		UpdateMusicStream(background_music);
-		//Ball Collition
+		//Points
 		if ((ball.ball_position.y >= (GetScreenHeight() - ball.ball_radius)) || (ball.ball_position.y <= ball.ball_radius)) ball.ball_speed.y *= -1.0f;
 		if (ball.ball_position.x <= 0) {
 			players[PLAYER2].score++;
@@ -53,7 +53,7 @@ namespace Godziela
 			ball.color = WHITE;
 			game_start = false;
 		}
-		//Player Collision
+		//Player-Ball Collision
 		if (CheckCollisionCircleRec(ball.ball_position, ball.ball_radius, players[PLAYER1].rec) ||
 			CheckCollisionCircleRec(ball.ball_position, ball.ball_radius, players[PLAYER2].rec)) {
 			//In case that the sound problem gets resolved

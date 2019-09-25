@@ -9,11 +9,13 @@
 namespace Godziela
 {
 	extern int frames;
-	extern float draw_x;
-	extern float draw_y;
-	const int game_over_time = 150000;
+	extern int draw_x;
+	extern int draw_y;
+	extern int winner;
+	const int game_over_time = 77000;
 
 
 
-	void draw_gameOver();
+	void draw_game_over();
+	void init_game_over();
 }

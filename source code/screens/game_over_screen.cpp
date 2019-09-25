@@ -4,32 +4,45 @@
 namespace Godziela
 {
 	int frames;
-	float draw_x;
-	float draw_y;
-
+	int draw_x;
+	int draw_y;
+	int winner;
 	void init_game_over()
 	{
 		frames = 0;
-		draw_x = (float)(GetScreenWidth() / 3);
-		draw_y = (float)(GetScreenWidth() / 2.5f);
+		draw_x = (GetScreenWidth() / 3.5f);
+		draw_y = (GetScreenHeight() / 4);
 	}
 
-	void draw_gameOver()
+	void change_screen()
 	{
+		players[PLAYER1].score = 0;
+		players[PLAYER2].score = 0;
+		game_start = false;
+		gameState = MENU;
+		StopMusicStream(gameOver_music);
+		frames = 0;
+	}
+
+	void draw_game_over()
+	{
+		if (players[PLAYER1].score > players[PLAYER2].score)
+			winner = 0;
+		else
+			winner = 1;
+
 		StopMusicStream(background_music);
 		PlayMusicStream(gameOver_music);
 		UpdateMusicStream(gameOver_music);
-		DrawText("GAME OVER", (int)draw_x, (int)draw_y, 50, RED);
+
+		DrawText("GAME OVER", draw_x, draw_y, 50, RED);
+		DrawText(FormatText("Winner: Player %i", winner + 1), draw_x, draw_y + 80, 30, BLUE);
+		DrawText(FormatText("Points: %i", players[winner].score), draw_x, draw_y + 140, 30, BLUE);
 		frames++;
 
 		if (frames > game_over_time)
 		{
-			players[PLAYER1].score = 0;
-			players[PLAYER2].score = 0;
-			game_start = false;
-			gameState = MENU;
-			StopMusicStream(gameOver_music);
-			frames = 0;
+			change_screen();
 		}
 	}
 }

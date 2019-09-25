@@ -28,6 +28,8 @@ namespace Godziela
 		InitWindow(screenWidth, screenHeight, "YEET: ATARI 2600 VERSION");
 
 		init_audio();
+		init_game_over();
+		init_game_screen();
 
 		//Sound doesn't load "Invalid data header"
 		//Tried both LoadSoundFromWave & LoadSound
@@ -77,7 +79,7 @@ namespace Godziela
 		}
 		case END:
 		{
-			draw_gameOver();
+			draw_game_over();
 			break;
 		}
 		}
@@ -121,7 +123,7 @@ namespace Godziela
 			break;
 		}
 		case END: {
-			draw_gameOver();
+			draw_game_over();
 		}
 		}
 		EndDrawing();
@@ -129,17 +131,17 @@ namespace Godziela
 
 	static void mov_ia() {
 		if (gameType != PvP) {
-			if (ball.ball_position.y < players[PLAYER2].rec.y) {
+			if (ball.ball_position.y < players[PLAYER2].rec.y && ball.ball_position.x >= GetScreenWidth() / 2) {
 				players[PLAYER2].rec.y -= vel_player * GetFrameTime();
 			}
-			if (ball.ball_position.y > players[PLAYER2].rec.y) {
+			if (ball.ball_position.y > players[PLAYER2].rec.y && ball.ball_position.x >= GetScreenWidth() / 2) {
 				players[PLAYER2].rec.y += vel_player * GetFrameTime();
 			}
 			if (gameType == BvB) {
-				if (ball.ball_position.y < players[PLAYER1].rec.y) {
+				if (ball.ball_position.y < players[PLAYER1].rec.y && ball.ball_position.x <= GetScreenWidth() / 2) {
 					players[PLAYER1].rec.y -= vel_player * GetFrameTime();
 				}
-				if (ball.ball_position.y > players[PLAYER1].rec.y) {
+				if (ball.ball_position.y > players[PLAYER1].rec.y && ball.ball_position.x <= GetScreenWidth() / 2) {
 					players[PLAYER1].rec.y += vel_player * GetFrameTime();
 				}
 			}
