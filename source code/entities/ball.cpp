@@ -15,7 +15,7 @@ namespace Godziela
 		ball.ball_radius = 20;
 		ball.color = WHITE;
 		//Ball texure
-		ball.img = LoadImage("resources/ball.png");
+		ball.img = LoadImage("resources/images/ball.png");
 		ImageResize(&ball.img, (int)ball.ball_radius + 30, (int)ball.ball_radius + 30);
 		ball.texture = LoadTextureFromImage(ball.img);
 		UnloadImage(ball.img);

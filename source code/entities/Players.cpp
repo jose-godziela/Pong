@@ -26,7 +26,7 @@ namespace Godziela
 			players[i].rec.height = players[i].size.y;
 			players[i].color = BLUE;
 			//Player Texture
-			players[i].img = LoadImage("resources/players.png");
+			players[i].img = LoadImage("resources/images/players.png");
 			ImageRotateCW(&players[i].img);
 			ImageResize(&players[i].img, (int)players[i].size.x, (int)players[i].size.y);
 			players[i].texture = LoadTextureFromImage(players[i].img);

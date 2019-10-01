@@ -36,7 +36,7 @@ namespace Godziela
 		//hit_sound = LoadSound("resources/sound/hit.wav");
 
 		//BackGround Creation
-		background_image = LoadImage("resources/fondo.png");
+		background_image = LoadImage("resources/images/fondo.png");
 		ImageResize(&background_image, screenWidth + 60, screenHeight);
 		background_texture = LoadTextureFromImage(background_image);
 		UnloadImage(background_image);
@@ -87,11 +87,11 @@ namespace Godziela
 
 	static void input() {
 		if (game_start && gameType != BvB) {
-			//Player 1 controls
+			//Enables Player 1 controls
 			//Enters here even in PvB
 			if (IsKeyDown(KEY_W)) players[PLAYER1].rec.y -= vel_player * GetFrameTime();
 			if (IsKeyDown(KEY_S)) players[PLAYER1].rec.y += vel_player * GetFrameTime();
-			//Player 2 Controls
+			//Enables Player 2 Controls
 			//Checks if the gameType is versus a player or a bot
 			if (gameType == PvP) {
 				if (IsKeyDown(KEY_UP)) players[PLAYER2].rec.y -= vel_player * GetFrameTime();
