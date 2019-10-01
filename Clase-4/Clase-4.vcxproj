@@ -109,6 +109,15 @@
       <AdditionalDependencies>glfw3.lib;raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)lib\Raylib\lib\raylib.dll $(OutDir) /y
+mkdir $(OutDir)resources
+xcopy $(SolutionDir)Clase-4\resources $(OutDir)\resources /s /e /y</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -136,6 +145,15 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)lib\Raylib\lib\raylib.dll $(OutDir) /y
+mkdir $(OutDir)resources
+xcopy $(SolutionDir)Clase-4\resources $(OutDir)\resources /s /e /y</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
