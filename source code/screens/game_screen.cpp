@@ -63,13 +63,13 @@ namespace Godziela
 			if (ball.ball_speed.x < 0) {
 				ball.ball_speed.x -= speed_up;
 				ball.ball_speed.y -= speed_up;
-				ball.ball_position.x -= MOVEMENT;
+				ball.ball_position.x -= ball.ball_radius;
 				ball.color = players[PLAYER2].color;
 			}
 			else {
 				ball.ball_speed.x += speed_up;
 				ball.ball_speed.y += speed_up;
-				ball.ball_position.x += MOVEMENT;
+				ball.ball_position.x += ball.ball_radius;
 				ball.color = players[PLAYER1].color;
 			}
 		}
