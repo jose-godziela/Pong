@@ -6,8 +6,8 @@ namespace Godziela
 	void init_ball()
 	{
 		//Ball Creation
-		ball.ball_position_init.x = (float)(GetScreenWidth() / 2);
-		ball.ball_position_init.y = (float)GetScreenHeight() / 2;
+		ball.ball_position_init.x = static_cast<float>(GetScreenWidth() / 2);
+		ball.ball_position_init.y = static_cast<float>(GetScreenHeight() / 2);
 		ball.ball_position = ball.ball_position_init;
 		ball.ball_speed_init.x = 250.0f;
 		ball.ball_speed_init.y = 400.0f;
@@ -16,7 +16,7 @@ namespace Godziela
 		ball.color = WHITE;
 		//Ball texure
 		ball.img = LoadImage("resources/images/ball.png");
-		ImageResize(&ball.img, (int)ball.ball_radius + 30, (int)ball.ball_radius + 30);
+		ImageResize(&ball.img, static_cast<int>(ball.ball_radius + 30), static_cast<int>(ball.ball_radius + 30));
 		ball.texture = LoadTextureFromImage(ball.img);
 		UnloadImage(ball.img);
 	}

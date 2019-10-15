@@ -10,9 +10,9 @@ namespace Godziela
 
 	void init_players()
 	{
-		posX_player1 = (float)(GetScreenWidth() / 15);
-		posX_player2 = (float)(GetScreenWidth() - (GetScreenWidth() / 12));
-		posY_players = (float)(GetScreenHeight() / 2);
+		posX_player1 = static_cast<float>(GetScreenWidth() / 15);
+		posX_player2 = static_cast<float>(GetScreenWidth() - (GetScreenWidth() / 12));
+		posY_players = static_cast<float>(GetScreenHeight() / 2);
 		//Players Creation
 		for (int i = 0; i < TOTAL_PLAYERS; i++) {
 			players[i].score = 0;
@@ -28,7 +28,7 @@ namespace Godziela
 			//Player Texture
 			players[i].img = LoadImage("resources/images/players.png");
 			ImageRotateCW(&players[i].img);
-			ImageResize(&players[i].img, (int)players[i].size.x, (int)players[i].size.y);
+			ImageResize(&players[i].img, static_cast<int>(players[i].size.x), static_cast<int>(players[i].size.y));
 			players[i].texture = LoadTextureFromImage(players[i].img);
 			UnloadImage(players[i].img);
 			if (i == PLAYER2)

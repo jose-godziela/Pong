@@ -22,10 +22,10 @@ namespace Godziela
 
 		DrawRectangleRec(players[PLAYER1].rec, players[PLAYER1].color);
 		DrawRectangleRec(players[PLAYER2].rec, players[PLAYER2].color);
-		DrawTexture(players[PLAYER1].texture, (int)players[PLAYER1].rec.x, (int)players[PLAYER1].rec.y, players[PLAYER1].color);
-		DrawTexture(players[PLAYER2].texture, (int)players[PLAYER2].rec.x, (int)players[PLAYER2].rec.y, players[PLAYER2].color);
+		DrawTexture(players[PLAYER1].texture, static_cast<int>(players[PLAYER1].rec.x), static_cast<int>(players[PLAYER1].rec.y), players[PLAYER1].color);
+		DrawTexture(players[PLAYER2].texture, static_cast<int>(players[PLAYER2].rec.x), static_cast<int>(players[PLAYER2].rec.y), players[PLAYER2].color);
 		DrawCircleV(ball.ball_position, ball.ball_radius, ball.color);
-		DrawTexture(ball.texture, (int)ball.ball_position.x - 23, (int)ball.ball_position.y - 23, WHITE);
+		DrawTexture(ball.texture, static_cast<int>(ball.ball_position.x - 23), static_cast<int>(ball.ball_position.y - 23), WHITE);
 
 		if (players[PLAYER1].score >= score_max || players[PLAYER2].score >= score_max) {
 			gameState = END;
