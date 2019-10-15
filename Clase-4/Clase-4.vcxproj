@@ -98,11 +98,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)source code\audio;$(SolutionDir)source code\entities;$(SolutionDir)source code\manager;$(SolutionDir)source code\screens;$(SolutionDir)lib\Raylib\include;$(SolutionDir)lib\GLFW\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Raylib\lib;$(SolutionDir)lib\GLFW\lib-vc2017;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -112,7 +113,7 @@
     <PostBuildEvent>
       <Command>copy $(SolutionDir)lib\Raylib\lib\raylib.dll $(OutDir) /y
 mkdir $(OutDir)resources
-xcopy $(SolutionDir)Clase-4\resources $(OutDir)\resources /s /e /y</Command>
+xcopy $(SolutionDir)Clase-4\resources $(OutDir)resources /s /e /y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>

@@ -14,6 +14,7 @@ namespace Godziela
 	const int MOVEMENT = 22;
 
 	extern bool game_start;
+	extern float foo;
 
 	void game_update();
 	void draw_game();

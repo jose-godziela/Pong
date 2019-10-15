@@ -10,7 +10,7 @@ namespace Godziela
 	void init_game_over()
 	{
 		frames = 0;
-		draw_x = (GetScreenWidth() / 3.5f);
+		draw_x = (GetScreenWidth() / (7/2));
 		draw_y = (GetScreenHeight() / 4);
 	}
 

@@ -4,6 +4,7 @@
 namespace Godziela
 {
 	bool game_start;
+	float foo;
 
 	void init_game_screen() {
 		game_start = false;
@@ -59,7 +60,8 @@ namespace Godziela
 			//In case that the sound problem gets resolved
 			//PlaySound(hit_sound);
 			ball.ball_speed.x *= -1.0f;
-			ball.ball_speed.y = -1.0f * (GetRandomValue(speedY.x, speedY.y));
+			foo = static_cast<float>(GetRandomValue(static_cast<int>(speedY.x), static_cast<int>(speedY.y)));
+			ball.ball_speed.y = -1.0f * foo;
 			if (ball.ball_speed.x < 0) {
 				ball.ball_speed.x -= speed_up;
 				ball.ball_speed.y -= speed_up;
