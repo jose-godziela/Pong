@@ -147,9 +147,7 @@ xcopy $(SolutionDir)Clase-4\resources $(OutDir)resources /s /e /y</Command>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)lib\Raylib\lib\raylib.dll $(OutDir) /y
-mkdir $(OutDir)resources
-xcopy $(SolutionDir)Clase-4\resources $(OutDir)\resources /s /e /y</Command>
+      <Command>$(SolutionDir) do_this_pls.bat "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
